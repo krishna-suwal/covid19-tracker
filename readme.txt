@@ -2,7 +2,7 @@
 Contributors: krishnasuwal
 Tags: covid, 19, covid19, stats, graph, table, map
 Requires at least: 4.9
-Tested up to: 5.4
+Tested up to: 5.5
 Requires PHP: 5.6
 Stable tag: 1.0.0
 License: GPLv2 or later
@@ -16,10 +16,23 @@ Allows you to embed covid 19 stats, map, graph etc on your website.
 
 **FEATURES:**
 
-* Show all Covid 19 stats
+* Show Covid 19 stats in map
+* Show Covid 19 stats in graph
+* Show Covid 19 stats in table
 
-**SHORTCODE:**
-Use the shortcode `c19t_all_stats` to embed a calculator.
+**SHORTCODES:**
+
+* `c19t_map`
+Show Covid 19 stats in map. Attributes: `title`
+
+* `c19t_graph`
+Show Covid 19 stats in graph. Currently only worldwide stats are shown. Attributes: `title`, `type`, `isincremental`.
+
+- type: one of "cases", "recovered" and "deaths"
+- isincremental: "yes" or "no". If "yes" is given, stat values will be incremental, otherwise it will show number of records for individual day.
+
+* `c19t_table`
+Show Covid 19 stats in a table with a list of countries. Attributes: `title`
 
 == Installation ==
 
@@ -30,7 +43,7 @@ You can also upload the Zip file and install from your Plugins > Add New section
 
 = Can I contribute? =
 
-Sure you can. Here's the GitHub [main repository](https://github.com/krishna-suwal/covid19-tracker) and [submodule](https://github.com/krishna-suwal/dynamic-calculator-frontend/)
+Sure you can. Here's the GitHub [repository](https://github.com/krishna-suwal/covid19-tracker). Go ahead and create some PRs :)
 
 == Changelog ==
 
