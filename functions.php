@@ -11,6 +11,15 @@ function c19t_prepare_data_attrs( $attrs = array() ) {
 }
 
 function c19t_enqueue_shortcode_script( $shortcode ) {
+	if ( defined( 'C19T_ENV_DEV' ) && C19T_ENV_DEV ) {
+		$c19t_js_asset_url   = C19T_JS_DIR_URL . '/main.js';
+		$c19t_csss_asset_url = C19T_CSS_DIR_URL . '/main.css';
+
+		wp_enqueue_script( 'c19t-js', $c19t_js_asset_url, array( 'c19t-react-js', 'c19t-react-dom-js' ), false, true );
+		wp_enqueue_style( 'c19t-css', $c19t_csss_asset_url );
+		return;
+	}
+
 	$shortcode     = C19T_Shortcodes::$shortcodes[ $shortcode ];
 	$hash_registry = c19t_get_hashed_assets();
 
