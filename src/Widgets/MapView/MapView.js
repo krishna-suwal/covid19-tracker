@@ -11,7 +11,13 @@ import numeral from "numeral";
 import Map from "../../Components/Map";
 import "leaflet/dist/leaflet.css";
 
-const App = () => {
+const infoBoxColorMap = {
+  cases: 'c19t-infoBox--redish',
+  recovered: 'c19t-infoBox--greenish',
+  deaths: 'c19t-infoBox--darkredish',
+};
+
+const App = ({ title = 'Covid 19 Tracker - Map View' }) => {
   const [country, setInputCountry] = useState("worldwide");
   const [countryInfo, setCountryInfo] = useState({});
   const [countries, setCountries] = useState([]);
@@ -66,33 +72,40 @@ const App = () => {
     <div className="app">
       <div className="app__left">
         <div className="app__header">
-          <h1>COVID-19 Tracker</h1>
-          <FormControl className="app__dropdown">
-            <Select
-              variant="outlined"
-              value={country}
-              onChange={onCountryChange}
-            >
-              <MenuItem value="worldwide">Worldwide</MenuItem>
-              {countries.map((country) => (
-                <MenuItem value={country.value}>{country.name}</MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+          <div><h1>{title}</h1></div>
+          <div>
+            <FormControl className="app__dropdown c19t-country">
+              <Select
+                className="c19t-country__select"
+                value={country}
+                onChange={onCountryChange}
+              >
+                <MenuItem
+                  value="worldwide"
+                  className="c19t-country__option"
+                  >
+                    Worldwide
+                </MenuItem>
+                {countries.map((country) => (
+                  <MenuItem className="c19t-country__option" value={country.value}>{country.name}</MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </div>
         </div>
         <div className="app__stats">
           <InfoBox
             onClick={(e) => setCasesType("cases")}
             title="Coronavirus Cases"
             isRed
-            active={casesType === "cases"}
+            className={`c19t-cases ${casesType === 'cases' && infoBoxColorMap.cases}`}
             cases={prettyPrintStat(countryInfo.todayCases)}
             total={numeral(countryInfo.cases).format("0.0a")}
           />
           <InfoBox
             onClick={(e) => setCasesType("recovered")}
             title="Recovered"
-            active={casesType === "recovered"}
+            className={`c19t-recovered ${casesType === 'recovered' && infoBoxColorMap.recovered}`}
             cases={prettyPrintStat(countryInfo.todayRecovered)}
             total={numeral(countryInfo.recovered).format("0.0a")}
           />
@@ -100,7 +113,7 @@ const App = () => {
             onClick={(e) => setCasesType("deaths")}
             title="Deaths"
             isRed
-            active={casesType === "deaths"}
+            className={`c19t-deaths ${casesType === 'deaths' && infoBoxColorMap.deaths}`}
             cases={prettyPrintStat(countryInfo.todayDeaths)}
             total={numeral(countryInfo.deaths).format("0.0a")}
           />

@@ -1,33 +1,41 @@
-.infoBox {
+.c19t-infoBox {
   flex: 1;
+  cursor: pointer;
 }
 
-.infoBox:not(:last-child) {
+.c19t-infoBox:not(:last-child) {
   margin-right: 10px;
 }
 
-.infoBox--selected {
-  border-top: 10px solid greenyellow;
+.c19t-infoBox--greenish {
+  background-color: #a7f5b3 !important;
 }
 
-.infoBox--red {
-  border-color: red;
+.c19t-infoBox--redish {
+  background-color: #ff878791 !important;
 }
 
-.infoBox__cases--green {
-  color: lightgreen !important;
+.c19t-infoBox--darkredish {
+  background-color: #ff8787b3 !important;
 }
 
-.infoBox__cases {
-  color: #cc1034;
+.c19t-cases {
+  color: #ef4d4d !important;
+}
+.c19t-recovered {
+  color: green !important;
+}
+.c19t-deaths {
+  color: red !important;
+}
+
+.c19t-infoBox__cases {
   font-weight: 600;
-  font-size: 1.75rem;
   margin-bottom: 0.5rem;
 }
 
-.infoBox__total {
+.c19t-infoBox__total {
   color: #6c757d;
   font-weight: 700 !important;
-  font-size: 0.8rem !important;
   margin-top: 15px !important;
 }
