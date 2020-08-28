@@ -11,14 +11,24 @@ function c19t_prepare_data_attrs( $attrs = array() ) {
 }
 
 function c19t_enqueue_shortcode_script( $shortcode ) {
-	$shortcode = C19T_Shortcodes::$shortcodes[ $shortcode ];
+	$shortcode     = C19T_Shortcodes::$shortcodes[ $shortcode ];
+	$hash_registry = c19t_get_hashed_assets();
 
-	// Local Assets.
-	$c19t_js_asset_url  = sprintf( '%s/%s.js', C19T_JS_DIR_URL, $shortcode['script'] );
-	$c19t_css_asset_url = sprintf( '%s/%s.css', C19T_CSS_DIR_URL, $shortcode['script'] );
+	// Load JS Asset.
+	if ( isset( $hash_registry['scripts'][ $shortcode['script'] ] ) ) {
+		$js_hash           = $hash_registry['scripts'][ $shortcode['script'] ];
+		$c19t_js_asset_url = sprintf( '%s/%s.%s.js', C19T_JS_DIR_URL, $shortcode['script'], $js_hash );
 
-	wp_enqueue_script( 'c19t-js', $c19t_js_asset_url, array( 'c19t-react-js', 'c19t-react-dom-js' ), false, true );
-	wp_enqueue_style( 'c19t-css', $c19t_css_asset_url );
+		wp_enqueue_script( $shortcode['script'], $c19t_js_asset_url, array( 'c19t-react-js', 'c19t-react-dom-js' ), false, true );
+	}
+
+	// Load CSS Asset.
+	if ( isset( $hash_registry['styles'][ $shortcode['style'] ] ) ) {
+		$css_hash           = $hash_registry['styles'][ $shortcode['style'] ];
+		$c19t_css_asset_url = sprintf( '%s/%s.%s.css', C19T_CSS_DIR_URL, $shortcode['style'], $css_hash );
+
+		wp_enqueue_style( $shortcode['style'], $c19t_css_asset_url );
+	}
 }
 
 function c19t_render_map( $atts ) {

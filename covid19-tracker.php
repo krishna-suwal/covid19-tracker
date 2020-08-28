@@ -20,20 +20,24 @@ if ( defined( 'C19T_ENV_DEV' ) && C19T_ENV_DEV ) {
 	define( 'C19T_CSS_DIR_URL', plugin_dir_url( __FILE__ ) . 'assets/css' );
 }
 
+require_once __DIR__ . '/_inc/hash-registry.php';
 require_once __DIR__ . '/functions.php';
 
 class C19T_Shortcodes {
 	public static $shortcodes = array(
 		'c19t_map'   => array(
-			'script'   => 'main',
+			'script'   => 'map-view',
+			'style'    => 'map-view',
 			'callback' => 'c19t_render_map',
 		),
 		'c19t_table' => array(
-			'script'   => 'main',
+			'script'   => 'table-view',
+			'style'    => 'table-view',
 			'callback' => 'c19t_render_table',
 		),
 		'c19t_graph' => array(
-			'script'   => 'main',
+			'script'   => 'graph-view',
+			'style'    => 'graph-view',
 			'callback' => 'c19t_render_graph',
 		),
 	);
