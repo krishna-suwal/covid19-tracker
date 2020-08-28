@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import MapView from './Widgets/MapView';
 import TableView from './Widgets/TableView';
 import GraphView from './Widgets/GraphView';
