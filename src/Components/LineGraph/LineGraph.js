@@ -47,15 +47,24 @@ const options = {
   },
 };
 
-const buildChartData = (data, casesType) => {
+const buildChartData = (data, casesType, isIncremental) => {
   let chartData = [];
   let lastDataPoint;
   for (let date in data.cases) {
     if (lastDataPoint) {
-      let newDataPoint = {
-        x: date,
-        y: data[casesType][date] - lastDataPoint,
-      };
+      let newDataPoint;
+      
+      if ( isIncremental ) {
+        newDataPoint = {
+          x: date,
+          y: data[casesType][date],
+        };
+      } else {
+        newDataPoint = {
+          x: date,
+          y: data[casesType][date] - lastDataPoint,
+        };
+      }
       chartData.push(newDataPoint);
     }
     lastDataPoint = data[casesType][date];
@@ -63,7 +72,22 @@ const buildChartData = (data, casesType) => {
   return chartData;
 };
 
-function LineGraph({ casesType }) {
+const colorMap = {
+  cases: {
+    backgroundColor: "#ff878791",
+    borderColor: "#ef4d4d",
+  },
+  recovered: {
+    backgroundColor: "#a7f5b3",
+    borderColor: "green",
+  },
+  deaths: {
+    backgroundColor: "rgba(204, 16, 52, 0.5)",
+    borderColor: "#CC1034",
+  },
+};
+
+function LineGraph({ casesType, isIncremental }) {
   const [data, setData] = useState({});
 
   useEffect(() => {
@@ -73,7 +97,7 @@ function LineGraph({ casesType }) {
           return response.json();
         })
         .then((data) => {
-          let chartData = buildChartData(data, casesType);
+          let chartData = buildChartData(data, casesType, isIncremental);
           setData(chartData);
         });
     };
@@ -88,8 +112,7 @@ function LineGraph({ casesType }) {
           data={{
             datasets: [
               {
-                backgroundColor: "rgba(204, 16, 52, 0.5)",
-                borderColor: "#CC1034",
+                ...colorMap[casesType],
                 data: data,
               },
             ],

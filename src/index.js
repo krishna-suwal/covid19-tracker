@@ -26,7 +26,12 @@ if ( document.getElementById('c19t-table-container') ) {
 if ( document.getElementById('c19t-graph-container') ) {
   ReactDOM.render(
     <React.StrictMode>
-      <Graph />
+      <Graph casesType="cases" title="WorldWide New Cases" />
+      <Graph casesType="recovered" title="WorldWide New Recovered" />
+      <Graph casesType="deaths" title="WorldWide New Deaths" />
+      <Graph casesType="cases" title="WorldWide Cases" isIncremental />
+      <Graph casesType="recovered" title="WorldWide Recovered" isIncremental />
+      <Graph casesType="deaths" title="WorldWide Deaths" isIncremental />
     </React.StrictMode>,
     document.getElementById('c19t-graph-container')
   );

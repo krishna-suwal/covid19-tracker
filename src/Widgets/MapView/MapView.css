@@ -28,16 +28,6 @@
   flex: 0.9;
 }
 
-.c19t-app__information > h3 {
-  color: #6a5d5d;
-  font-weight: 400;
-  margin-bottom: 1rem;
-}
-
-.c19t-app__information > h3:last-of-type {
-  margin-top: 1rem;
-}
-
 @media (max-width: 990px) {
   .c19t-app {
     flex-direction: column;

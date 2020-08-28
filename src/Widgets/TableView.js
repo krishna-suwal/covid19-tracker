@@ -6,7 +6,7 @@ import {
 import Table from "../Components/Table";
 import { sortData } from '../Utils';
 
-const TableView = () => {
+const TableView = ({title = 'Cases by Country'}) => {
     const [tableData, setTableData] = React.useState([]);
     
     React.useEffect(() => {
@@ -22,10 +22,10 @@ const TableView = () => {
     }, []);
 
     return (
-        <Card className="app__right">
+        <Card>
           <CardContent>
-            <div className="app__information">
-              <h3>Live Cases by Country</h3>
+            <div>
+              <h3>{title}</h3>
               <Table countries={tableData} />
             </div>
           </CardContent>

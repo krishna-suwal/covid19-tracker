@@ -1,4 +1,4 @@
-.table {
+.c19t-table {
   margin-top: 20px;
   overflow: scroll;
   color: #6a5d5d;
@@ -6,16 +6,16 @@
   height: 400px;
 }
 
-.table tr {
+.c19t-table tr {
   display: flex;
   justify-content: space-between;
 }
 
-.table td {
+.c19t-table td {
   padding: 0.5rem;
   border: none;
 }
 
-.table tr:nth-of-type(odd) {
+.c19t-table tr:nth-of-type(odd) {
   background-color: #f3f2f8;
 }

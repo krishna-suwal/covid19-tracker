@@ -4,7 +4,7 @@ import numeral from "numeral";
 
 function Table({ countries }) {
   return (
-    <div className="table">
+    <div className="c19t-table">
       {countries.map((country) => (
         <tr>
           <td>{country.country}</td>
