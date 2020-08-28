@@ -1,3 +1,6 @@
 /.* export-ignore
 src export-ignore
 scripts export-ignore
+public export-ignore
+package.json export-ignore
+package-lock.json export-ignore
