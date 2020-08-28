@@ -69,12 +69,12 @@ const App = ({ title = 'Covid 19 Tracker - Map View' }) => {
   };
 
   return (
-    <div className="app">
-      <div className="app__left">
-        <div className="app__header">
+    <div className="c19t-app">
+      <div className="c19t-app__left">
+        <div className="c19t-app__header">
           <div><h1>{title}</h1></div>
           <div>
-            <FormControl className="app__dropdown c19t-country">
+            <FormControl className="c19t-app__dropdown c19t-country">
               <Select
                 className="c19t-country__select"
                 value={country}
@@ -93,7 +93,7 @@ const App = ({ title = 'Covid 19 Tracker - Map View' }) => {
             </FormControl>
           </div>
         </div>
-        <div className="app__stats">
+        <div className="c19t-app__stats">
           <InfoBox
             onClick={(e) => setCasesType("cases")}
             title="Coronavirus Cases"
