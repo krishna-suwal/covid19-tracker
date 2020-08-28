@@ -1,18 +1,14 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
+import "./MapView.css";
 import {
   MenuItem,
   FormControl,
   Select,
-  Card,
-  CardContent,
 } from "@material-ui/core";
-import InfoBox from "./InfoBox";
-import LineGraph from "./LineGraph";
-import Table from "./Table";
-import { sortData, prettyPrintStat } from "./util";
+import InfoBox from "../../Components/InfoBox";
+import { prettyPrintStat } from "../../Utils";
 import numeral from "numeral";
-import Map from "./Map";
+import Map from "../../Components/Map";
 import "leaflet/dist/leaflet.css";
 
 const App = () => {
@@ -20,7 +16,6 @@ const App = () => {
   const [countryInfo, setCountryInfo] = useState({});
   const [countries, setCountries] = useState([]);
   const [mapCountries, setMapCountries] = useState([]);
-  const [tableData, setTableData] = useState([]);
   const [casesType, setCasesType] = useState("cases");
   const [mapCenter, setMapCenter] = useState({ lat: 34.80746, lng: -40.4796 });
   const [mapZoom, setMapZoom] = useState(3);
@@ -42,17 +37,13 @@ const App = () => {
             name: country.country,
             value: country.countryInfo.iso2,
           }));
-          let sortedData = sortData(data);
           setCountries(countries);
           setMapCountries(data);
-          setTableData(sortedData);
         });
     };
 
     getCountriesData();
   }, []);
-
-  console.log(casesType);
 
   const onCountryChange = async (e) => {
     const countryCode = e.target.value;
@@ -121,16 +112,6 @@ const App = () => {
           zoom={mapZoom}
         />
       </div>
-      <Card className="app__right">
-        <CardContent>
-          <div className="app__information">
-            <h3>Live Cases by Country</h3>
-            <Table countries={tableData} />
-            <h3>Worldwide new {casesType}</h3>
-            <LineGraph casesType={casesType} />
-          </div>
-        </CardContent>
-      </Card>
     </div>
   );
 };
