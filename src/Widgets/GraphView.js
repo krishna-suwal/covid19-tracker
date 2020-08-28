@@ -8,7 +8,7 @@ import LineGraph from "../Components/LineGraph";
 /**
  * Case Types: cases, deaths, recovered
  */
-const Graph = ({casesType = 'recovered', title = 'WorldWide New Records', isIncremental = false}) => {
+const GraphView = ({casesType = 'recovered', title = 'WorldWide New Records', isIncremental = false}) => {
     return (
         <Card>
           <CardContent>
@@ -21,4 +21,4 @@ const Graph = ({casesType = 'recovered', title = 'WorldWide New Records', isIncr
     );
 };
 
-export default Graph;
+export default GraphView;

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import MapView from './Widgets/MapView';
 import TableView from './Widgets/TableView';
-import Graph from './Widgets/Graph';
+import GraphView from './Widgets/GraphView';
 
 const mapContainers = document.getElementsByClassName('c19t-map-container');
 
@@ -25,7 +25,7 @@ for ( let i = 0; i < graphContainers.length; i += 1 ) {
 
   ReactDOM.render(
     <React.StrictMode>
-      <Graph
+      <GraphView
         title={element.dataset?.title}
         casesType={element.dataset?.type}
         isIncremental={element.dataset?.isincremental === 'yes'}
