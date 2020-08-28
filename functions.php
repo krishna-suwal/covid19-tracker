@@ -1,5 +1,15 @@
 <?php
 
+function c19t_prepare_data_attrs( $attrs = array() ) {
+	$attrs        = (array) $attrs;
+	$attrs_string = '';
+
+	foreach ( $attrs as $key => $value ) {
+		$attrs_string .= ' data-' . $key . '="' . esc_attr( $value ) . '" ';
+	}
+	return $attrs_string;
+}
+
 function c19t_enqueue_shortcode_script( $shortcode ) {
 	$shortcode = C19T_Shortcodes::$shortcodes[ $shortcode ];
 
@@ -14,19 +24,28 @@ function c19t_enqueue_shortcode_script( $shortcode ) {
 function c19t_render_map( $atts ) {
 	c19t_enqueue_shortcode_script( 'c19t_map' );
 
-	return '<div id="c19t-map-container">Covid19 map should render here.</div>';
+	$placeholder = 'Covid19 tracker map should appear here';
+	$all_attrs   = c19t_prepare_data_attrs( $atts );
+
+	return sprintf( '<div class="c19t-map-container" %s>%s</div>', $all_attrs, $placeholder );
 }
 
 function c19t_render_table( $atts ) {
 	c19t_enqueue_shortcode_script( 'c19t_table' );
 
-	return '<div id="c19t-table-container">Covid19 table should render here.</div>';
+	$placeholder = 'Covid19 tracker table should appear here';
+	$all_attrs   = c19t_prepare_data_attrs( $atts );
+
+	return sprintf( '<div class="c19t-table-container" %s>%s</div>', $all_attrs, $placeholder );
 }
 
 function c19t_render_graph( $atts ) {
 	c19t_enqueue_shortcode_script( 'c19t_graph' );
 
-	return '<div id="c19t-graph-container">Covid19 graph should render here.</div>';
+	$placeholder = 'Covid19 tracker graph should appear here';
+	$all_attrs   = c19t_prepare_data_attrs( $atts );
+
+	return sprintf( '<div class="c19t-graph-container" %s>%s</div>', $all_attrs, $placeholder );
 }
 
 function c19t_register_shortcodes( $shortcodes ) {

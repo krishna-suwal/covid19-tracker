@@ -5,34 +5,47 @@ import MapView from './Widgets/MapView';
 import TableView from './Widgets/TableView';
 import Graph from './Widgets/Graph';
 
-if ( document.getElementById('c19t-map-container') ) {
+const mapContainers = document.getElementsByClassName('c19t-map-container');
+
+for ( let i = 0; i < mapContainers.length; i += 1 ) {
+  const element = mapContainers[i];
+
   ReactDOM.render(
     <React.StrictMode>
-      <MapView />
+      <MapView title={element.dataset?.title} />
     </React.StrictMode>,
-    document.getElementById('c19t-map-container')
+    element
   );
 }
 
-if ( document.getElementById('c19t-table-container') ) {
+const graphContainers = document.getElementsByClassName('c19t-graph-container');
+
+for ( let i = 0; i < graphContainers.length; i += 1 ) {
+  const element = graphContainers[i];
+
   ReactDOM.render(
     <React.StrictMode>
-      <TableView />
+      <Graph
+        title={element.dataset?.title}
+        casesType={element.dataset?.type}
+        isIncremental={element.dataset?.isincremental === 'yes'}
+      />
     </React.StrictMode>,
-    document.getElementById('c19t-table-container')
+    element
   );
 }
 
-if ( document.getElementById('c19t-graph-container') ) {
+const tableContainers = document.getElementsByClassName('c19t-table-container');
+
+for ( let i = 0; i < tableContainers.length; i += 1 ) {
+  const element = tableContainers[i];
+
   ReactDOM.render(
     <React.StrictMode>
-      <Graph casesType="cases" title="WorldWide New Cases" />
-      <Graph casesType="recovered" title="WorldWide New Recovered" />
-      <Graph casesType="deaths" title="WorldWide New Deaths" />
-      <Graph casesType="cases" title="WorldWide Cases" isIncremental />
-      <Graph casesType="recovered" title="WorldWide Recovered" isIncremental />
-      <Graph casesType="deaths" title="WorldWide Deaths" isIncremental />
+      <TableView
+        title={element.dataset?.title}
+      />
     </React.StrictMode>,
-    document.getElementById('c19t-graph-container')
+    element
   );
 }

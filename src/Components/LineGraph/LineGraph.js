@@ -103,7 +103,7 @@ function LineGraph({ casesType, isIncremental }) {
     };
 
     fetchData();
-  }, [casesType]);
+  }, [casesType, isIncremental]);
 
   return (
     <div>
