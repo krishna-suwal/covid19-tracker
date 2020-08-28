@@ -17,10 +17,15 @@
     "react-scripts": "3.4.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start-non-wp": "react-scripts start",
+    "start": "node ./scripts/start-non-split.js",
+    "build": "node ./scripts/build-non-split.js",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "watch": "npm-watch",
+    "build-rename": "npm run build-rename-js && npm run build-rename-css",
+    "build-rename-js": "renamer --find \"/main\\.[^\\.]+\\.js/g\" --replace \"main.js\" build/static/js/*",
+    "build-rename-css": "renamer --find \"/main\\.[^\\.]+\\.css/\" --replace \"main.css\" build/static/css/*"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -36,5 +41,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "rewire": "^5.0.0"
   }
 }
